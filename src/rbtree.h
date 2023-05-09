@@ -28,5 +28,6 @@ node_t *rbtree_max(const rbtree *);
 int rbtree_erase(rbtree *, node_t *);
 
 int rbtree_to_array(const rbtree *, key_t *, const size_t);
+static void delete_node_lrv(node_t *);
 
 #endif  // _RBTREE_H_

@@ -2,19 +2,40 @@
 
 #include <stdlib.h>
 
+// 트리만들기 시작
 rbtree *new_rbtree(void) {
-  rbtree *p = (rbtree *)calloc(1, sizeof(rbtree));
-  // TODO: initialize struct if needed
-  return p;
+  
+  rbtree *t = (rbtree *)calloc(1, sizeof(rbtree)); // tree 구조체 동적 할당
+  node_t *nil =(rbtree *)calloc(1,sizeof(node_t)); // nil 노드 생성 및 초기화
+
+  nil ->color =RBTREE_BLACK; //nil노드는 항상 검은색이다.
+  
+  // tree의 nil과 root를 nil 노드로 설정 (tree가 빈 경우 root는 nil노드여야 한다.)
+  t->nil = t->root = nil;
+  return t;
 }
 
 void delete_rbtree(rbtree *t) {
+
   // TODO: reclaim the tree nodes's memory
   free(t);
 }
 
 node_t *rbtree_insert(rbtree *t, const key_t key) {
-  // TODO: implement insert
+
+  node_t *new_node = (node_t *)calloc(1,sizeof(node_t));
+  new_node->key =key;
+  new_node->color = RBTREE_RED;
+  new_node->left = new_node->right = t->nil;
+  node_t *current = t->root;
+  while (current!=t->nil)
+  {
+    // t->nil = current;
+    if(key < current->key)
+    {
+      
+    }
+  }
   return t->root;
 }
 
