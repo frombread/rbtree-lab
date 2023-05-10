@@ -34,4 +34,5 @@ void rbtree_insert_fixup(rbtree *t, node_t*node); // 삽입한 다음에 색맞�
 void left_rotate(rbtree *t, node_t*node);
 void right_rotate(rbtree *t, node_t*node);
 void exchange_color(node_t *a , node_t *b);
+node_t *next_node (const rbtree *t , node_t *node);
 #endif  // _RBTREE_H_

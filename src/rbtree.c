@@ -9,7 +9,6 @@ rbtree *new_rbtree(void) {
   node_t *nil =(rbtree *)calloc(1,sizeof(node_t)); // nil 노드 생성 및 초기화
 
   nil ->color =RBTREE_BLACK; //nil노드는 항상 검은색이다.
-
   // tree의 nil과 root를 nil 노드로 설정 (tree가 빈 경우 root는 nil노드여야 한다.)
   t->nil = t->root = nil;
   return t;
@@ -202,9 +201,12 @@ node_t *rbtree_find(const rbtree *t, const key_t key) {
       current = (key<current->key) ? current->left:current->right;
     }
   }
-  return t->root;
+  if (current == t->nil)
+    return NULL;
+  return current;
 }
 
+//최소값
 node_t *rbtree_min(const rbtree *t) {
   node_t *current = t->root;
 
@@ -214,6 +216,7 @@ node_t *rbtree_min(const rbtree *t) {
   }
 }
 
+//최대값
 node_t *rbtree_max(const rbtree *t) {
   node_t *current =t->root;
 
@@ -223,12 +226,37 @@ node_t *rbtree_max(const rbtree *t) {
   return current;
 }
 
+//삭제를 시작하기가 싫다.......
 int rbtree_erase(rbtree *t, node_t *p) {
   // TODO: implement erase
   return 0;
 }
 
+
 int rbtree_to_array(const rbtree *t, key_t *arr, const size_t n) {
-  // TODO: implement to_array
+
   return 0;
+}
+
+
+node_t *next_node (const rbtree *t , node_t *node){
+  node_t *current = node->right;
+  if(current ==t->nil){
+    current=node;
+    while(1)
+    {
+      if (current ->parent->right ==current) //오른쪽 자식이 없으면
+      {
+        current = current->parent; // 부모 노드로 이동 후 이어서 탐색
+      }
+      else{
+        return current->parent; // current가 왼쪽 자식인 경우 부모노드 리턴
+      }
+    }
+    while (current->left != t->nil) // 왼쪽 자식이 있으면
+    {
+      current = current->left; //왼쪽 끝까지 
+    }
+    return current;
+  }
 }
