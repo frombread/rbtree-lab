@@ -29,10 +29,12 @@ int rbtree_erase(rbtree *, node_t *);
 
 int rbtree_to_array(const rbtree *, key_t *, const size_t);
 
+
 void delete_node_lrv(rbtree *t, node_t*node); // 트리 맨밑까지 가서 삭제 하기
 void rbtree_insert_fixup(rbtree *t, node_t*node); // 삽입한 다음에 색맞추기,등등
 void left_rotate(rbtree *t, node_t*node);
 void right_rotate(rbtree *t, node_t*node);
 void exchange_color(node_t *a , node_t *b);
-node_t *next_node (const rbtree *t , node_t *node);
+node_t *next_node (const rbtree *t , node_t *p);
+void rbtree_erase_fixup(rbtree *t, node_t *parent,int is_left);
 #endif  // _RBTREE_H_
